@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CreateItemUseCase } from '../../application/use-cases/create-item.use-case';
-import { CreateItemDto } from '../dtos/create-item.dto';
+import { CreateItemUseCase } from '../../use-cases/create-item.use-case';
+import { CreateItemDto } from '../../dtos/create-item.dto';
 import { ApiBody } from '@nestjs/swagger';
 
 @Controller('items')

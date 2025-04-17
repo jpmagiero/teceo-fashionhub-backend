@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CreateCategoryUseCase } from '../../application/use-cases/create-category.use-case';
-import { CreateCategoryDto } from '../dtos/create-category.dto';
+import { CreateCategoryUseCase } from '../../use-cases/create-category.use-case';
+import { CreateCategoryDto } from '../../dtos/create-category.dto';
 import { ApiBody } from '@nestjs/swagger';
 
 @Controller('categories')

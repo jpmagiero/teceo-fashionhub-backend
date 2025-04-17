@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { ItemRepository } from '../../domain/repositories/item.repository';
-import { Item } from '../../domain/entities/item.entity';
+import { ItemRepository } from '../repositories/item.repository';
+import { Item } from '../entities/item.entity';
 import { Prisma } from '@prisma/client';
 
 @Injectable()
