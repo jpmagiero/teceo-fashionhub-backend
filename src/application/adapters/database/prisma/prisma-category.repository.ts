@@ -9,10 +9,13 @@ export class PrismaCategoryRepository implements CategoryRepository {
 
   async create(category: Category): Promise<Category> {
     const created = await this.prisma.category.create({
-      data: {
-        name: category.name,
-      },
+      data: { name: category.name },
     });
     return new Category(created.name, created.id);
+  }
+
+  async findAll(): Promise<Category[]> {
+    const categories = await this.prisma.category.findMany();
+    return categories.map((c) => new Category(c.name, c.id));
   }
 }
