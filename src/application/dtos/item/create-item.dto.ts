@@ -1,5 +1,6 @@
-import { IsString, IsOptional, IsNumber, IsInt } from 'class-validator';
+import { IsString, IsOptional, IsNumber, IsInt, IsEnum } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { ItemStatus } from './item-status.enum';
 
 export class CreateItemDto {
   @ApiProperty({ example: 'Jaqueta jeans', description: 'Nome do item' })
@@ -22,8 +23,8 @@ export class CreateItemDto {
   color?: string;
 
   @ApiProperty({ example: 'Novo', description: 'Status do item' })
-  @IsString()
-  status: string;
+  @IsEnum(ItemStatus, { message: 'status deve ser um dos valores permitidos' })
+  status: ItemStatus;
 
   @ApiProperty({ example: 100, description: 'Preço do item' })
   @IsNumber()

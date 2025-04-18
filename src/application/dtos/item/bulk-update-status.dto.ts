@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsNumber, IsEnum } from 'class-validator';
+import { ItemStatus } from './item-status.enum';
 
 export class BulkUpdateStatusDto {
   @ApiProperty({
@@ -14,6 +15,6 @@ export class BulkUpdateStatusDto {
     example: 'em_estoque',
     description: 'Novo status para todos os itens',
   })
-  @IsString()
-  status: string;
+  @IsEnum(ItemStatus, { message: 'status deve ser um dos valores permitidos' })
+  status: ItemStatus;
 }

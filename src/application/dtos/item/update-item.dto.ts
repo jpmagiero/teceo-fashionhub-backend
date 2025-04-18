@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsOptional, IsNumber } from 'class-validator';
+import { IsString, IsOptional, IsNumber, IsEnum } from 'class-validator';
+import { ItemStatus } from './item-status.enum';
 
 export class UpdateItemDto {
   @ApiProperty({ example: 'Camiseta Básica' })
@@ -23,9 +24,9 @@ export class UpdateItemDto {
   color?: string;
 
   @ApiProperty({ example: 'em_estoque' })
-  @IsString()
+  @IsEnum(ItemStatus, { message: 'status deve ser um dos valores permitidos' })
   @IsOptional()
-  status?: string;
+  status?: ItemStatus;
 
   @ApiProperty({ example: 79.9 })
   @IsNumber()
