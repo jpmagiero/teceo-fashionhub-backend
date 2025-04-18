@@ -9,12 +9,14 @@ import { PrismaService } from './application/adapters/database/prisma/prisma.ser
 import { ItemRepository } from './application/repositories/item.repository';
 import { CategoryRepository } from './application/repositories/category.repository';
 import { GetCategoriesUseCase } from './application/use-cases/get-categories.use-case';
+import { GetItemsUseCase } from './application/use-cases/get-items.use-case';
 
 @Module({
   imports: [],
   controllers: [ItemController, CategoryController],
   providers: [
     CreateItemUseCase,
+    GetItemsUseCase,
     CreateCategoryUseCase,
     GetCategoriesUseCase,
     PrismaItemRepository,

@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { CreateCategoryUseCase } from '../../use-cases/create-category.use-case';
 import { GetCategoriesUseCase } from '../../use-cases/get-categories.use-case';
-import { CreateCategoryDto } from '../../dtos/create-category.dto';
+import { CreateCategoryDto } from '../../dtos/category/create-category.dto';
 import { ApiOkResponse } from '@nestjs/swagger';
-import { CategoryDto } from 'src/application/dtos/category.dto';
+import { CategoryDto } from 'src/application/dtos/category/category-response.dto';
 
 @Controller('categories')
 export class CategoryController {

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
 import { ItemRepository } from '../../../repositories/item.repository';
 import { Item } from '../../../entities/item.entity';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class PrismaItemRepository implements ItemRepository {
@@ -32,6 +33,42 @@ export class PrismaItemRepository implements ItemRepository {
       created.updatedAt,
     );
   }
+
+  async findManyPaginated(
+    take: number,
+    cursor?: number,
+  ): Promise<{ items: Item[]; nextCursor: number | null }> {
+    const query: Prisma.ItemFindManyArgs = {
+      take,
+      orderBy: { id: 'asc' },
+    };
+    if (cursor) {
+      query.cursor = { id: cursor };
+      query.skip = 1;
+    }
+    const items = await this.prisma.item.findMany(query);
+    const nextCursor =
+      items.length === take ? items[items.length - 1].id : null;
+    return {
+      items: items.map(
+        (i) =>
+          new Item(
+            i.name,
+            i.status,
+            i.price,
+            i.categoryId,
+            i.brand,
+            i.size,
+            i.color,
+            i.id,
+            i.createdAt,
+            i.updatedAt,
+          ),
+      ),
+      nextCursor,
+    };
+  }
+
   catch(error) {
     throw error;
   }
