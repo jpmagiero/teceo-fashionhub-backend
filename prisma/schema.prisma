@@ -25,6 +25,9 @@ model Item {
   updatedAt  DateTime @updatedAt
   categoryId Int
   category   Category @relation(fields: [categoryId], references: [id])
+
+  @@index([status])
+  @@index([categoryId])
 }
 
 enum ItemStatus {
