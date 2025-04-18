@@ -2,6 +2,8 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { ItemRepository } from '../repositories/item.repository';
 import { Item } from '../entities/item.entity';
 import { Prisma } from '@prisma/client';
+import { ItemResponseDto } from '../dtos/item/item-response.dto';
+import { plainToInstance } from 'class-transformer';
 
 @Injectable()
 export class CreateItemUseCase {
@@ -9,7 +11,7 @@ export class CreateItemUseCase {
 
   async execute(
     data: Omit<Item, 'id' | 'createdAt' | 'updatedAt'>,
-  ): Promise<Item> {
+  ): Promise<ItemResponseDto> {
     try {
       const item = new Item(
         data.name,
@@ -20,7 +22,10 @@ export class CreateItemUseCase {
         data.size,
         data.color,
       );
-      return await this.itemRepository.create(item);
+      return plainToInstance(
+        ItemResponseDto,
+        await this.itemRepository.create(item),
+      );
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
