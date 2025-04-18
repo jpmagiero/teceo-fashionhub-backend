@@ -1,3 +1,4 @@
+import { UpdateItemDto } from '../dtos/item/update-item.dto';
 import { Item } from '../entities/item.entity';
 
 export abstract class ItemRepository {
@@ -6,4 +7,6 @@ export abstract class ItemRepository {
     take: number,
     cursor?: number,
   ): Promise<{ items: Item[]; nextCursor: number | null }>;
+  abstract update(id: number, dto: UpdateItemDto): Promise<Item>;
+  abstract bulkUpdateStatus(ids: number[], status: string): Promise<Item[]>;
 }

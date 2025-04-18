@@ -18,4 +18,11 @@ export class PrismaCategoryRepository implements CategoryRepository {
     const categories = await this.prisma.category.findMany();
     return categories.map((c) => new Category(c.name, c.id));
   }
+
+  async findById(id: number): Promise<Category | null> {
+    const category = await this.prisma.category.findUnique({
+      where: { id },
+    });
+    return category ? new Category(category.name, category.id) : null;
+  }
 }

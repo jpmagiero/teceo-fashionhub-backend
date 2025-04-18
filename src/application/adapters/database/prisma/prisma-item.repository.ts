@@ -3,6 +3,7 @@ import { PrismaService } from './prisma.service';
 import { ItemRepository } from '../../../repositories/item.repository';
 import { Item } from '../../../entities/item.entity';
 import { Prisma } from '@prisma/client';
+import { UpdateItemDto } from 'src/application/dtos/item/update-item.dto';
 
 @Injectable()
 export class PrismaItemRepository implements ItemRepository {
@@ -69,7 +70,48 @@ export class PrismaItemRepository implements ItemRepository {
     };
   }
 
-  catch(error) {
-    throw error;
+  async update(id: number, dto: UpdateItemDto): Promise<Item> {
+    const updated = await this.prisma.item.update({
+      where: { id },
+      data: dto,
+    });
+    return new Item(
+      updated.name,
+      updated.status,
+      updated.price,
+      updated.categoryId,
+      updated.brand,
+      updated.size,
+      updated.color,
+      updated.id,
+      updated.createdAt,
+      updated.updatedAt,
+    );
+  }
+
+  async bulkUpdateStatus(ids: number[], status: string): Promise<Item[]> {
+    await this.prisma.item.updateMany({
+      where: { id: { in: ids } },
+      data: { status },
+    });
+    const updatedItems = await this.prisma.item.findMany({
+      where: { id: { in: ids } },
+      orderBy: { id: 'asc' },
+    });
+    return updatedItems.map(
+      (item) =>
+        new Item(
+          item.name,
+          item.status,
+          item.price,
+          item.categoryId,
+          item.brand,
+          item.size,
+          item.color,
+          item.id,
+          item.createdAt,
+          item.updatedAt,
+        ),
+    );
   }
 }

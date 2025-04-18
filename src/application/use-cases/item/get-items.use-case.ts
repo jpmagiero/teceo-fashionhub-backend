@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ItemRepository } from '../repositories/item.repository';
-import { Item } from '../entities/item.entity';
+import { ItemRepository } from '../../repositories/item.repository';
+import { Item } from '../../entities/item.entity';
 
 @Injectable()
 export class GetItemsUseCase {

@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { CategoryRepository } from '../repositories/category.repository';
-import { Category } from '../entities/category.entity';
+import { CategoryRepository } from '../../repositories/category.repository';
+import { Category } from '../../entities/category.entity';
 
 @Injectable()
 export class CreateCategoryUseCase {

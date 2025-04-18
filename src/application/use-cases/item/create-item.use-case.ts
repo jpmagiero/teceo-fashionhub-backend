@@ -1,10 +1,10 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { ItemRepository } from '../repositories/item.repository';
-import { Item } from '../entities/item.entity';
+import { ItemRepository } from '../../repositories/item.repository';
+import { Item } from '../../entities/item.entity';
 import { Prisma } from '@prisma/client';
-import { ItemResponseDto } from '../dtos/item/item-response.dto';
+import { ItemResponseDto } from '../../dtos/item/item-response.dto';
 import { plainToInstance } from 'class-transformer';
-import { CreateItemDto } from '../dtos/item/create-item.dto';
+import { CreateItemDto } from '../../dtos/item/create-item.dto';
 
 @Injectable()
 export class CreateItemUseCase {

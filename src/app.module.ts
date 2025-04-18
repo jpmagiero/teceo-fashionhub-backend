@@ -1,15 +1,17 @@
 import { Module } from '@nestjs/common';
 import { ItemController } from './application/adapters/controllers/item.controller';
 import { CategoryController } from './application/adapters/controllers/category.controller';
-import { CreateItemUseCase } from './application/use-cases/create-item.use-case';
-import { CreateCategoryUseCase } from './application/use-cases/create-category.use-case';
+import { CreateItemUseCase } from './application/use-cases/item/create-item.use-case';
+import { CreateCategoryUseCase } from './application/use-cases/category/create-category.use-case';
 import { PrismaItemRepository } from './application/adapters/database/prisma/prisma-item.repository';
 import { PrismaCategoryRepository } from './application/adapters/database/prisma/prisma-category.repository';
 import { PrismaService } from './application/adapters/database/prisma/prisma.service';
 import { ItemRepository } from './application/repositories/item.repository';
 import { CategoryRepository } from './application/repositories/category.repository';
-import { GetCategoriesUseCase } from './application/use-cases/get-categories.use-case';
-import { GetItemsUseCase } from './application/use-cases/get-items.use-case';
+import { GetCategoriesUseCase } from './application/use-cases/category/get-categories.use-case';
+import { GetItemsUseCase } from './application/use-cases/item/get-items.use-case';
+import { UpdateItemUseCase } from './application/use-cases/item/update-item.use-case';
+import { BulkUpdateStatusUseCase } from './application/use-cases/item/bulk-update-status.use-case';
 
 @Module({
   imports: [],
@@ -19,6 +21,8 @@ import { GetItemsUseCase } from './application/use-cases/get-items.use-case';
     GetItemsUseCase,
     CreateCategoryUseCase,
     GetCategoriesUseCase,
+    UpdateItemUseCase,
+    BulkUpdateStatusUseCase,
     PrismaItemRepository,
     PrismaCategoryRepository,
     PrismaService,

@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { CreateCategoryUseCase } from '../../use-cases/create-category.use-case';
-import { GetCategoriesUseCase } from '../../use-cases/get-categories.use-case';
+import { CreateCategoryUseCase } from '../../use-cases/category/create-category.use-case';
+import { GetCategoriesUseCase } from '../../use-cases/category/get-categories.use-case';
 import { CreateCategoryDto } from '../../dtos/category/create-category.dto';
 import { ApiOkResponse } from '@nestjs/swagger';
 import { CategoryDto } from 'src/application/dtos/category/category-response.dto';
