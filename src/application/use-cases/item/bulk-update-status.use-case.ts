@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { ItemRepository } from '../../repositories/item.repository';
 import { ItemResponseDto } from '../../dtos/item/item-response.dto';
 import { plainToInstance } from 'class-transformer';
@@ -13,6 +17,11 @@ export class BulkUpdateStatusUseCase {
         ids,
         status,
       );
+      if (!updatedItems.length) {
+        throw new NotFoundException(
+          'Nenhum item encontrado para os ids fornecidos.',
+        );
+      }
       return updatedItems.map((item) => plainToInstance(ItemResponseDto, item));
     } catch (error) {
       throw new BadRequestException(

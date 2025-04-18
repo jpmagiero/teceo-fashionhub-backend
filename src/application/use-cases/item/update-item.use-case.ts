@@ -8,6 +8,7 @@ import { CategoryRepository } from '../../repositories/category.repository';
 import { UpdateItemDto } from '../../dtos/item/update-item.dto';
 import { ItemResponseDto } from '../../dtos/item/item-response.dto';
 import { plainToInstance } from 'class-transformer';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class UpdateItemUseCase {
@@ -33,6 +34,12 @@ export class UpdateItemUseCase {
       }
       return plainToInstance(ItemResponseDto, updated);
     } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === 'P2025'
+      ) {
+        throw new NotFoundException('Item não encontrado');
+      }
       throw new BadRequestException(
         `Erro ao atualizar item: ${(error as Error).message}`,
       );
