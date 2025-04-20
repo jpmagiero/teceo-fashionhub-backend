@@ -63,7 +63,7 @@ API para gerenciamento de peças de roupa e acessórios, desenvolvida em NestJS,
 
 Acesse [http://localhost:3000/api](http://localhost:3000/api) para testar todos os endpoints via Swagger.
 
-**Caso deseje testar com uma grande quantidade de dados, basta importar a collection do Postman que estará incluída junto aos arquivos do projeto. Nela, você encontrará uma requisição POST para cadastro das categorias, que deve ser executada primeiro, e outra requisição POST com 500 itens para popular a tabela.**
+**Caso deseje testar com uma grande quantidade de dados, basta importar a collection do Postman que estará incluída junto aos arquivos do projeto. Nela, você encontrará uma requisição POST para cadastro das categorias, que deve ser executada primeiro, e outra requisição POST com 250 itens para popular a tabela.**
 
 ### **Categorias**
 
