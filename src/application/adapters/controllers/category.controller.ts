@@ -14,12 +14,12 @@ export class CategoryController {
 
   @Post()
   @ApiCreatedResponse({
-    description: 'Categorias criadas com sucesso',
+    description: 'Categories created successfully',
     type: [CategoryResponseDto],
     schema: {
       example: [
-        { id: 1, name: 'Roupas' },
-        { id: 2, name: 'Acessórios' },
+        { id: 1, name: 'Clothes' },
+        { id: 2, name: 'Accessories' },
       ],
     },
   })
@@ -33,12 +33,12 @@ export class CategoryController {
 
   @Get()
   @ApiOkResponse({
-    description: 'Lista de categorias',
+    description: 'List of categories',
     type: [CategoryResponseDto],
     schema: {
       example: [
-        { id: 1, name: 'Roupas' },
-        { id: 2, name: 'Acessórios' },
+        { id: 1, name: 'Clothes' },
+        { id: 2, name: 'Accessories' },
       ],
     },
   })

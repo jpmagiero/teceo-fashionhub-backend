@@ -15,7 +15,7 @@ export class CreateCategoryUseCase {
       return plainToInstance(CategoryResponseDto, createdCategory);
     } catch (error) {
       throw new BadRequestException(
-        'Erro ao criar categoria: ' + (error as Error).message,
+        'Error creating category: ' + (error as Error).message,
       );
     }
   }

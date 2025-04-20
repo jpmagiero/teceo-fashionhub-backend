@@ -5,7 +5,7 @@ import { Type } from 'class-transformer';
 export class GetItemsQueryDto {
   @ApiPropertyOptional({
     example: 20,
-    description: 'Quantidade de itens por página',
+    description: 'Number of items per page',
   })
   @IsOptional()
   @Type(() => Number)
@@ -14,7 +14,7 @@ export class GetItemsQueryDto {
 
   @ApiPropertyOptional({
     example: 10,
-    description: 'ID do último item carregado (cursor)',
+    description: 'Last item loaded (cursor)',
   })
   @IsOptional()
   @Type(() => Number)

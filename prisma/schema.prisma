@@ -31,7 +31,7 @@ model Item {
 }
 
 enum ItemStatus {
-  em_estoque
-  utimas_unidades
-  fora_de_estoque
+  in_stock
+  last_units
+  out_of_stock
 }

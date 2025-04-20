@@ -4,7 +4,7 @@ export class ItemResponseDto {
   @ApiProperty({ example: 508 })
   id: number;
 
-  @ApiProperty({ example: 'Camiseta Básica' })
+  @ApiProperty({ example: 'Basic T-shirt' })
   name: string;
 
   @ApiProperty({ example: 'Nike', required: false })
@@ -13,10 +13,10 @@ export class ItemResponseDto {
   @ApiProperty({ example: 'M', required: false })
   size?: string;
 
-  @ApiProperty({ example: 'Azul', required: false })
+  @ApiProperty({ example: 'Blue', required: false })
   color?: string;
 
-  @ApiProperty({ example: 'em_estoque' })
+  @ApiProperty({ example: 'in_stock' })
   status: string;
 
   @ApiProperty({ example: 79.9 })

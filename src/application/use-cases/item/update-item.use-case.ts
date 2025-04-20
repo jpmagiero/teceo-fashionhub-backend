@@ -22,7 +22,7 @@ export class UpdateItemUseCase {
       const category = await this.categoryRepository.findById(dto.categoryId);
       if (!category) {
         throw new BadRequestException(
-          'Categoria não encontrada para o categoryId informado.',
+          'Category not found for the provided categoryId.',
         );
       }
     }
@@ -30,7 +30,7 @@ export class UpdateItemUseCase {
     try {
       const updated = await this.itemRepository.update(id, dto);
       if (!updated) {
-        throw new NotFoundException('Item não encontrado');
+        throw new NotFoundException('Item not found');
       }
       return plainToInstance(ItemResponseDto, updated);
     } catch (error) {
@@ -38,10 +38,10 @@ export class UpdateItemUseCase {
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2025'
       ) {
-        throw new NotFoundException('Item não encontrado');
+        throw new NotFoundException('Item not found');
       }
       throw new BadRequestException(
-        `Erro ao atualizar item: ${(error as Error).message}`,
+        `Error updating item: ${(error as Error).message}`,
       );
     }
   }

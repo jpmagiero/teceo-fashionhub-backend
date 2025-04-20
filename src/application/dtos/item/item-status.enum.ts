@@ -1,5 +1,5 @@
 export enum ItemStatus {
-  EM_ESTOQUE = 'em_estoque',
-  ULTIMAS_UNIDADES = 'ultimas_unidades',
-  FORA_DE_ESTOQUE = 'fora_de_estoque',
+  IN_STOCK = 'in_stock',
+  LAST_UNITS = 'last_units',
+  OUT_OF_STOCK = 'out_of_stock',
 }

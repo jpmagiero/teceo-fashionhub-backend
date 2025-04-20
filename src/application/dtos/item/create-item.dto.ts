@@ -3,34 +3,34 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ItemStatus } from './item-status.enum';
 
 export class CreateItemDto {
-  @ApiProperty({ example: 'Jaqueta jeans', description: 'Nome do item' })
+  @ApiProperty({ example: 'Basic T-shirt', description: 'Item name' })
   @IsString()
   name: string;
 
-  @ApiProperty({ example: 'Zara', description: 'Marca do item' })
+  @ApiProperty({ example: 'Zara', description: 'Item brand' })
   @IsOptional()
   @IsString()
   brand?: string;
 
-  @ApiProperty({ example: 'M', description: 'Tamanho do item' })
+  @ApiProperty({ example: 'M', description: 'Item size' })
   @IsOptional()
   @IsString()
   size?: string;
 
-  @ApiProperty({ example: 'Preto', description: 'Cor do item' })
+  @ApiProperty({ example: 'Black', description: 'Item color' })
   @IsOptional()
   @IsString()
   color?: string;
 
-  @ApiProperty({ example: 'Novo', description: 'Status do item' })
-  @IsEnum(ItemStatus, { message: 'status deve ser um dos valores permitidos' })
+  @ApiProperty({ example: 'New', description: 'Item status' })
+  @IsEnum(ItemStatus, { message: 'status must be one of the allowed values' })
   status: ItemStatus;
 
-  @ApiProperty({ example: 100, description: 'Preço do item' })
+  @ApiProperty({ example: 100, description: 'Item price' })
   @IsNumber()
   price: number;
 
-  @ApiProperty({ example: 1, description: 'ID da categoria' })
+  @ApiProperty({ example: 1, description: 'Category ID' })
   @IsInt()
   categoryId: number;
 }

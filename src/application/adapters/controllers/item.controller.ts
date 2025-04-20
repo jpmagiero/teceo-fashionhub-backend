@@ -33,7 +33,7 @@ export class ItemController {
 
   @Get()
   @ApiOkResponse({
-    description: 'Lista paginada de itens',
+    description: 'Paginated list of items',
     type: PaginatedItemsResponseDto,
   })
   async findAll(@Query() query: GetItemsQueryDto) {
@@ -45,17 +45,17 @@ export class ItemController {
   @Post()
   @ApiBody({ type: [CreateItemDto] })
   @ApiCreatedResponse({
-    description: 'Itens criados com sucesso',
+    description: 'Items created successfully',
     type: [ItemResponseDto],
     schema: {
       example: [
         {
           id: 1,
-          name: 'Camiseta Básica',
+          name: 'Basic T-shirt',
           brand: 'Nike',
           size: 'M',
-          color: 'Azul',
-          status: 'em_estoque',
+          color: 'Blue',
+          status: 'in_stock',
           price: 79.9,
           categoryId: 1,
         },
@@ -68,16 +68,16 @@ export class ItemController {
 
   @Put(':id')
   @ApiOkResponse({
-    description: 'Item atualizado com sucesso',
+    description: 'Item updated successfully',
     type: ItemResponseDto,
     schema: {
       example: {
         id: 1,
-        name: 'Camiseta Atualizada',
+        name: 'Updated T-shirt',
         brand: 'Nike',
         size: 'G',
-        color: 'Preto',
-        status: 'fora_de_estoque',
+        color: 'Black',
+        status: 'out_of_stock',
         price: 89.9,
         categoryId: 2,
       },
@@ -92,17 +92,17 @@ export class ItemController {
 
   @Patch('bulk/status')
   @ApiOkResponse({
-    description: 'Status dos itens atualizados com sucesso',
+    description: 'Status of items updated successfully',
     type: [ItemResponseDto],
     schema: {
       example: [
         {
           id: 1,
-          name: 'Camiseta Básica',
+          name: 'Basic T-shirt',
           brand: 'Nike',
           size: 'M',
-          color: 'Azul',
-          status: 'fora_de_estoque',
+          color: 'Blue',
+          status: 'out_of_stock',
           price: 79.9,
           categoryId: 1,
         },

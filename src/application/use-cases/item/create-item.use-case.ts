@@ -24,17 +24,17 @@ export class CreateItemUseCase {
       const createdItem = await this.itemRepository.create(item);
       return plainToInstance(ItemResponseDto, createdItem);
     } catch (error) {
-      console.error('Erro ao criar item:', error);
+      console.error('Error creating item:', error);
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2003'
       ) {
         throw new BadRequestException(
-          'Categoria não encontrada para o categoryId informado.',
+          'Category not found for the provided categoryId.',
         );
       }
       throw new BadRequestException(
-        `Erro ao criar item '${data.name}': ${(error as Error).message}`,
+        `Error creating item '${data.name}': ${(error as Error).message}`,
       );
     }
   }

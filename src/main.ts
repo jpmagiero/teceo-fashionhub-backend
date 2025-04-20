@@ -16,7 +16,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('FashionHub API')
-    .setDescription('API para gerenciamento de itens')
+    .setDescription('API for item management')
     .setVersion('1.0')
     .build();
 
@@ -28,6 +28,6 @@ async function bootstrap() {
 }
 
 bootstrap().catch((err) => {
-  console.error('Erro ao iniciar a aplicação:', err);
+  console.error('Error starting the application:', err);
   process.exit(1);
 });

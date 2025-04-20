@@ -18,14 +18,12 @@ export class BulkUpdateStatusUseCase {
         status,
       );
       if (!updatedItems.length) {
-        throw new NotFoundException(
-          'Nenhum item encontrado para os ids fornecidos.',
-        );
+        throw new NotFoundException('No items found for the provided ids.');
       }
       return updatedItems.map((item) => plainToInstance(ItemResponseDto, item));
     } catch (error) {
       throw new BadRequestException(
-        `Erro ao atualizar status em massa: ${(error as Error).message}`,
+        `Error updating status in bulk: ${(error as Error).message}`,
       );
     }
   }

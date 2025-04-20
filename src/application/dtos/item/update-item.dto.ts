@@ -3,7 +3,7 @@ import { IsString, IsOptional, IsNumber, IsEnum } from 'class-validator';
 import { ItemStatus } from './item-status.enum';
 
 export class UpdateItemDto {
-  @ApiProperty({ example: 'Camiseta Básica' })
+  @ApiProperty({ example: 'Basic T-shirt' })
   @IsString()
   @IsOptional()
   name?: string;
@@ -18,13 +18,13 @@ export class UpdateItemDto {
   @IsOptional()
   size?: string;
 
-  @ApiProperty({ example: 'Azul' })
+  @ApiProperty({ example: 'Blue' })
   @IsString()
   @IsOptional()
   color?: string;
 
-  @ApiProperty({ example: 'em_estoque' })
-  @IsEnum(ItemStatus, { message: 'status deve ser um dos valores permitidos' })
+  @ApiProperty({ example: 'in_stock' })
+  @IsEnum(ItemStatus, { message: 'status must be one of the allowed values' })
   @IsOptional()
   status?: ItemStatus;
 

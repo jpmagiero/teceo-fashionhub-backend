@@ -4,6 +4,6 @@ export class CategoryResponseDto {
   @ApiProperty({ example: 1 })
   id: number;
 
-  @ApiProperty({ example: 'Roupas' })
+  @ApiProperty({ example: 'Clothes' })
   name: string;
 }
