@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { CreateItemUseCase } from '../../use-cases/item/create-item.use-case';
 import { CreateItemDto } from '../../dtos/item/create-item.dto';
-import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOkResponse, ApiCreatedResponse } from '@nestjs/swagger';
 import { GetItemsQueryDto } from 'src/application/dtos/item/get-items-query.dto';
 import { GetItemsUseCase } from '../../use-cases/item/get-items.use-case';
 import {
@@ -44,19 +44,74 @@ export class ItemController {
 
   @Post()
   @ApiBody({ type: [CreateItemDto] })
+  @ApiCreatedResponse({
+    description: 'Itens criados com sucesso',
+    type: [ItemResponseDto],
+    schema: {
+      example: [
+        {
+          id: 1,
+          name: 'Camiseta Básica',
+          brand: 'Nike',
+          size: 'M',
+          color: 'Azul',
+          status: 'em_estoque',
+          price: 79.9,
+          categoryId: 1,
+        },
+      ],
+    },
+  })
   async create(@Body() dtos: CreateItemDto[]): Promise<ItemResponseDto[]> {
     return Promise.all(dtos.map((dto) => this.createItemUseCase.execute(dto)));
   }
 
   @Put(':id')
-  @ApiOkResponse({ description: 'Item atualizado com sucesso' })
-  async update(@Param('id') id: number, @Body() dto: UpdateItemDto) {
+  @ApiOkResponse({
+    description: 'Item atualizado com sucesso',
+    type: ItemResponseDto,
+    schema: {
+      example: {
+        id: 1,
+        name: 'Camiseta Atualizada',
+        brand: 'Nike',
+        size: 'G',
+        color: 'Preto',
+        status: 'fora_de_estoque',
+        price: 89.9,
+        categoryId: 2,
+      },
+    },
+  })
+  async update(
+    @Param('id') id: number,
+    @Body() dto: UpdateItemDto,
+  ): Promise<ItemResponseDto> {
     return await this.updateItemUseCase.execute(id, dto);
   }
 
   @Patch('bulk/status')
-  @ApiOkResponse({ description: 'Status dos itens atualizados com sucesso' })
-  async bulkUpdateStatus(@Body() dto: BulkUpdateStatusDto) {
+  @ApiOkResponse({
+    description: 'Status dos itens atualizados com sucesso',
+    type: [ItemResponseDto],
+    schema: {
+      example: [
+        {
+          id: 1,
+          name: 'Camiseta Básica',
+          brand: 'Nike',
+          size: 'M',
+          color: 'Azul',
+          status: 'fora_de_estoque',
+          price: 79.9,
+          categoryId: 1,
+        },
+      ],
+    },
+  })
+  async bulkUpdateStatus(
+    @Body() dto: BulkUpdateStatusDto,
+  ): Promise<ItemResponseDto[]> {
     return await this.bulkUpdateStatusUseCase.execute(dto.ids, dto.status);
   }
 }
