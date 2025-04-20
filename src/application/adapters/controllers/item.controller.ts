@@ -21,6 +21,7 @@ import { UpdateItemDto } from 'src/application/dtos/item/update-item.dto';
 import { BulkUpdateStatusDto } from 'src/application/dtos/item/bulk-update-status.dto';
 import { UpdateItemUseCase } from '../../use-cases/item/update-item.use-case';
 import { BulkUpdateStatusUseCase } from '../../use-cases/item/bulk-update-status.use-case';
+import { ValidateArrayPipe } from '../../../helpers/validate-array.pipe';
 
 @Controller('items')
 export class ItemController {
@@ -62,7 +63,9 @@ export class ItemController {
       ],
     },
   })
-  async create(@Body() dtos: CreateItemDto[]): Promise<ItemResponseDto[]> {
+  async create(
+    @Body(new ValidateArrayPipe(CreateItemDto)) dtos: CreateItemDto[],
+  ): Promise<ItemResponseDto[]> {
     return Promise.all(dtos.map((dto) => this.createItemUseCase.execute(dto)));
   }
 
