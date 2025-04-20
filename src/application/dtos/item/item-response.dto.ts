@@ -22,8 +22,8 @@ export class ItemResponseDto {
   @ApiProperty({ example: 79.9 })
   price: number;
 
-  @ApiProperty({ example: 1 })
-  categoryId: number;
+  @ApiProperty({ example: 'Clothes' })
+  category: string;
 }
 
 export class PaginatedItemsResponseDto {
